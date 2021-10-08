@@ -17,5 +17,6 @@
             "LabeledStatement",
             "WithStatement"
         ]
-    }
+    },
+    "parser": "babel-eslint"
 }

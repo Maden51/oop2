@@ -1,17 +1,19 @@
 export default class Character {
-  constructor(name, type, attack, defence) {
+  static types = ['Bowman', 'Swordsman', 'Magician', 'Daemon', 'Undead', 'Zombie'];
+
+  constructor(name, type) {
     if (typeof name !== 'string' || name.length < 2 || name.length > 10) {
       throw new Error('Имя должно быть от 2 до 10 символов');
+    } else {
+      this.name = name;
     }
-    if (!['Bowman', 'Swordsman', 'Magician', 'Daemon', 'Undead', 'Zombie'].includes(type)) {
+    if (!(Character.types.includes(type))) {
       throw new Error('неверный класс');
+    } else {
+      this.type = type;
     }
-    this.name = name;
-    this.type = type;
     this.health = 100;
     this.level = 1;
-    this.attack = attack;
-    this.defence = defence;
   }
 
   levelUp() {
@@ -26,8 +28,10 @@ export default class Character {
   }
 
   damage(points) {
-    if (this.health >= 0) {
+    if (this.health > 0) {
       this.health = points * (1 - this.defence / 100);
+    } else {
+      throw new Error('Нельзя наносить урон мёртвому персонажу');
     }
   }
 }

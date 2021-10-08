@@ -1,8 +1,9 @@
-/* eslint-disable no-unused-vars */
 import Character from './Character';
 
-class Daemon extends Character {
-  constructor(name) {
-    super(name, 'Daemon', 10, 40);
+export default class Daemon extends Character {
+  constructor(name, type = 'Daemon') {
+    super(name, type);
+    this.attack = 10;
+    this.defence = 40;
   }
 }
